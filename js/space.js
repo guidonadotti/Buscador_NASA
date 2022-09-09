@@ -23,8 +23,11 @@ let getJSONData = function (url) {
             return result;
         });
 }
-function resultadoBusqueda(){
-    document.getElementById("contenedor").innerHTML=""
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("btnBuscar").addEventListener("click", () => {
+        document.getElementById("contenedor").innerHTML=""
         let Busqueda = document.getElementById("inputBuscar").value
         let JSON = `https://images-api.nasa.gov/search?q=${Busqueda}`
         getJSONData(JSON).then(respuesta => {
@@ -44,14 +47,6 @@ function resultadoBusqueda(){
                 `
             }
         })
-}
 
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("inputBuscar").addEventListener("keydown",function(tecla){
-        if(tecla.key="Enter"){
-            resultadoBusqueda()
-        }
     })
-
-    document.getElementById("btnBuscar").addEventListener("click",resultadoBusqueda() )
 })
