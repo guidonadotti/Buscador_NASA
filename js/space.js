@@ -1,4 +1,3 @@
-
 let getJSONData = function(url) {
     let result = {};
 
