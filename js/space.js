@@ -23,6 +23,13 @@ let getJSONData = function(url) {
     });
 }
 
+function ampliar(tarjeta){
+    localStorage.setItem("tarjeta",tarjeta.nasa_id);
+    localStorage.setItem("informacion",JSON.stringify(tarjeta))
+    console.log(JSON.stringify(tarjeta));
+    /* window.location="pagina.html" */;
+}
+
 function mostrarResultados(){
     let busqueda = document.getElementById("inputBuscar").value;
         let JSON = `https://images-api.nasa.gov/search?q=${busqueda}`;
@@ -31,7 +38,7 @@ function mostrarResultados(){
             respuesta = respuesta.data;
             for (elemento of respuesta.collection.items) {
                 document.getElementById("contenedor").innerHTML += `
-                <div class="col-4">
+                <div class="col-4" onclick='ampliar("${elemento.data[0]}")'>
                     <div class="card shadow-sm">
                         <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="${elemento.links[0].href}"</img>
                         <div class="card-body">
@@ -54,5 +61,5 @@ document.addEventListener("DOMContentLoaded", () => {
         if(tecla.key=="Enter"){
             mostrarResultados();
         };
-    })
+    });
 });

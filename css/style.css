@@ -6,3 +6,6 @@ main {
   overflow: auto;
   height: 200px;
 }
+img{
+  max-width: 100vw;
+}
